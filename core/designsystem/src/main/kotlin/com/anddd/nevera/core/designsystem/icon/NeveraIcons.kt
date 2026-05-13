@@ -24,6 +24,8 @@ object NeveraIcons {
         @Composable get() = painterResource(R.drawable.ic_textfield_check)
     val Warning: Painter
         @Composable get() = painterResource(R.drawable.ic_textfield_warning)
+    val EmptyStateWarning: Painter
+        @Composable get() = painterResource(R.drawable.ic_emptystate_warning)
     val Eye: Painter
         @Composable get() = painterResource(R.drawable.ic_textfield_eyes)
     val EyeOff: Painter
