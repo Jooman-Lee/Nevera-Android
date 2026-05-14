@@ -7,20 +7,22 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.anddd.nevera.core.designsystem.ui.theme.NeveraTheme
-import com.anddd.nevera.feature.main.home.navigation.homeScreen
 import com.anddd.nevera.feature.login.main.navigation.LOGIN_ROUTE
 import com.anddd.nevera.feature.login.main.navigation.loginScreen
 import com.anddd.nevera.feature.main.home.navigation.HOME_ROUTE
+import com.anddd.nevera.feature.main.home.navigation.homeScreen
+import com.anddd.nevera.feature.mypage.main.navigation.MY_PAGE_ROUTE
+import com.anddd.nevera.feature.mypage.main.navigation.myPageScreen
+import com.anddd.nevera.feature.notificationlist.notificationlist.navigation.NOTIFICATION_LIST_ROUTE
+import com.anddd.nevera.feature.notificationlist.notificationlist.navigation.notificationListScreen
 import com.anddd.nevera.feature.signup.main.navigation.SIGNUP_ROUTE
 import com.anddd.nevera.feature.signup.main.navigation.signupScreen
 import com.anddd.nevera.feature.splash.main.navigation.SPLASH_ROUTE
 import com.anddd.nevera.feature.splash.main.navigation.splashScreen
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.anddd.nevera.feature.mypage.main.navigation.MY_PAGE_ROUTE
-import com.anddd.nevera.feature.mypage.main.navigation.myPageScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -75,7 +77,14 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate(MY_PAGE_ROUTE)
                             }
                         )
-                        myPageScreen()
+                        myPageScreen(
+                            onNavigateToNotificationList = {
+                                navController.navigate(NOTIFICATION_LIST_ROUTE)
+                            }
+                        )
+                        notificationListScreen(
+                            onNavigateBack = { navController.popBackStack() }
+                        )
                     }
                 }
             }

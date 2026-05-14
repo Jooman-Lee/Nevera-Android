@@ -16,6 +16,7 @@ import com.anddd.nevera.feature.mypage.main.model.MyPageSideEffect
 
 @Composable
 fun MyPageScreen(
+    onNavigateToNotificationList: () -> Unit,
     viewModel: MyPageViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
@@ -27,6 +28,7 @@ fun MyPageScreen(
             viewModel.sideEffect.collect { effect ->
                 when (effect) {
                     is MyPageSideEffect.ShowToast -> Toast.makeText(context, effect.message, Toast.LENGTH_SHORT).show()
+                    MyPageSideEffect.NavigateToNotificationList -> onNavigateToNotificationList()
                 }
             }
         }

@@ -48,6 +48,7 @@ class MyPageViewModel @Inject constructor() : ViewModel() {
     private fun reduce(state: MyPageUiState, intent: MyPageIntent): MyPageUiState = when (intent) {
         MyPageIntent.Load -> state.copy(status = MyPageStatus.Loading)
         MyPageIntent.LoadComplete -> state.copy(status = MyPageStatus.Idle)
+        MyPageIntent.NotificationBellClicked -> state
         is MyPageIntent.SettingItemClicked -> state
     }
 
@@ -56,6 +57,9 @@ class MyPageViewModel @Inject constructor() : ViewModel() {
         when (intent) {
             MyPageIntent.Load -> load()
             MyPageIntent.LoadComplete -> {}
+            MyPageIntent.NotificationBellClicked -> viewModelScope.launch {
+                _sideEffect.send(MyPageSideEffect.NavigateToNotificationList)
+            }
             is MyPageIntent.SettingItemClicked -> when (intent.item) {
                 SettingItem.Notification -> {}
                 SettingItem.Account -> {}
