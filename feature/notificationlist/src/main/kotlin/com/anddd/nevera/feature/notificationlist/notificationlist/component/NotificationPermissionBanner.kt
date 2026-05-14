@@ -1,4 +1,4 @@
-package com.anddd.nevera.feature.alarmlist.alarmlist.component
+package com.anddd.nevera.feature.notificationlist.notificationlist.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,7 +20,7 @@ import com.anddd.nevera.core.designsystem.component.button.NeveraFilledButton
 import com.anddd.nevera.core.designsystem.ui.theme.NeveraTheme
 
 @Composable
-internal fun AlarmPermissionBanner(
+internal fun NotificationPermissionBanner(
     onEnableClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -65,9 +65,9 @@ internal fun AlarmPermissionBanner(
     widthDp = 360
 )
 @Composable
-private fun AlarmPermissionBannerPreview() {
+private fun NotificationPermissionBannerPreview() {
     NeveraTheme {
-        AlarmPermissionBanner(
+        NotificationPermissionBanner(
             onEnableClick = {},
             modifier = Modifier.padding(NeveraTheme.spacing.padding16),
         )

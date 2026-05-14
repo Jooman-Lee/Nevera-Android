@@ -1,4 +1,4 @@
-package com.anddd.nevera.feature.alarmlist.alarmlist.component
+package com.anddd.nevera.feature.notificationlist.notificationlist.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,12 +25,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.anddd.nevera.core.designsystem.ui.theme.NeveraTheme
-import com.anddd.nevera.feature.alarmlist.R
-import com.anddd.nevera.feature.alarmlist.alarmlist.model.AlarmItem
+import com.anddd.nevera.feature.notificationlist.R
+import com.anddd.nevera.feature.notificationlist.notificationlist.model.NotificationItem
 
 @Composable
-internal fun AlarmListItem(
-    item: AlarmItem,
+internal fun NotificationListItem(
+    item: NotificationItem,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -94,10 +94,10 @@ internal fun AlarmListItem(
 
 @Preview(showBackground = true)
 @Composable
-private fun AlarmListItemUnreadPreview() {
+private fun NotificationListItemUnreadPreview() {
     NeveraTheme {
-        AlarmListItem(
-            item = AlarmItem(
+        NotificationListItem(
+            item = NotificationItem(
                 id = "1",
                 title = "삼겹살(12,000)이 내일까지예요",
                 body = "오늘 저녁은 [제육볶음] 어떠세요?",
@@ -111,10 +111,10 @@ private fun AlarmListItemUnreadPreview() {
 
 @Preview(showBackground = true)
 @Composable
-private fun AlarmListItemReadPreview() {
+private fun NotificationListItemReadPreview() {
     NeveraTheme {
-        AlarmListItem(
-            item = AlarmItem(
+        NotificationListItem(
+            item = NotificationItem(
                 id = "2",
                 title = "삼겹살(12,000)이 내일까지예요",
                 body = "오늘 저녁은 [제육볶음] 어떠세요?",

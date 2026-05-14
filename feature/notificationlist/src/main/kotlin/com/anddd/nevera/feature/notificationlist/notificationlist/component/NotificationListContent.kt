@@ -1,6 +1,5 @@
-package com.anddd.nevera.feature.alarmlist.alarmlist.component
+package com.anddd.nevera.feature.notificationlist.notificationlist.component
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,15 +19,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.anddd.nevera.core.designsystem.icon.NeveraIcons
 import com.anddd.nevera.core.designsystem.ui.theme.NeveraTheme
-import com.anddd.nevera.feature.alarmlist.alarmlist.model.AlarmItem
-import com.anddd.nevera.feature.alarmlist.alarmlist.model.AlarmListUiState
+import com.anddd.nevera.feature.notificationlist.notificationlist.model.NotificationItem
+import com.anddd.nevera.feature.notificationlist.notificationlist.model.NotificationListUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun AlarmListContent(
-    state: AlarmListUiState,
+internal fun NotificationListContent(
+    state: NotificationListUiState,
     onBackClick: () -> Unit,
-    onAlarmClick: (String) -> Unit,
+    onNotificationClick: (String) -> Unit,
     onEnableNotificationClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -65,20 +64,20 @@ internal fun AlarmListContent(
                 .padding(innerPadding),
         ) {
             if (!state.isNotificationPermissionGranted) {
-                AlarmPermissionBanner(
+                NotificationPermissionBanner(
                     onEnableClick = onEnableNotificationClick,
                     modifier = Modifier.padding(NeveraTheme.spacing.padding16),
                 )
             }
 
-            if (state.alarms.isEmpty()) {
-                AlarmEmptyContent()
+            if (state.notifications.isEmpty()) {
+                NotificationEmptyContent()
             } else {
                 LazyColumn(modifier = Modifier.weight(1f)) {
-                    items(items = state.alarms, key = { it.id }) { alarm ->
-                        AlarmListItem(
-                            item = alarm,
-                            onClick = { onAlarmClick(alarm.id) },
+                    items(items = state.notifications, key = { it.id }) { notification ->
+                        NotificationListItem(
+                            item = notification,
+                            onClick = { onNotificationClick(notification.id) },
                         )
                     }
                     item {
@@ -101,11 +100,11 @@ internal fun AlarmListContent(
     }
 }
 
-private val previewAlarms = listOf(
-    AlarmItem(id = "1", title = "삼겹살(12,000)이 내일까지예요", body = "오늘 저녁은 [제육볶음] 어떠세요?", timeAgo = "59분 전", isRead = false),
-    AlarmItem(id = "2", title = "삼겹살(12,000)이 내일까지예요", body = "오늘 저녁은 [제육볶음] 어떠세요?", timeAgo = "23시간 전", isRead = true),
-    AlarmItem(id = "3", title = "삼겹살(12,000)이 내일까지예요", body = "오늘 저녁은 [제육볶음] 어떠세요?", timeAgo = "1일 전", isRead = true),
-    AlarmItem(id = "4", title = "삼겹살(12,000)이 내일까지예요", body = "오늘 저녁은 [제육볶음] 어떠세요?", timeAgo = "30일 전", isRead = true),
+private val previewNotifications = listOf(
+    NotificationItem(id = "1", title = "삼겹살(12,000)이 내일까지예요", body = "오늘 저녁은 [제육볶음] 어떠세요?", timeAgo = "59분 전", isRead = false),
+    NotificationItem(id = "2", title = "삼겹살(12,000)이 내일까지예요", body = "오늘 저녁은 [제육볶음] 어떠세요?", timeAgo = "23시간 전", isRead = true),
+    NotificationItem(id = "3", title = "삼겹살(12,000)이 내일까지예요", body = "오늘 저녁은 [제육볶음] 어떠세요?", timeAgo = "1일 전", isRead = true),
+    NotificationItem(id = "4", title = "삼겹살(12,000)이 내일까지예요", body = "오늘 저녁은 [제육볶음] 어떠세요?", timeAgo = "30일 전", isRead = true),
 )
 
 @Preview(
@@ -114,12 +113,12 @@ private val previewAlarms = listOf(
     widthDp = 360
 )
 @Composable
-private fun PreviewAlarmListWithItems() {
+private fun PreviewNotificationListWithItems() {
     NeveraTheme {
-        AlarmListContent(
-            state = AlarmListUiState(alarms = previewAlarms, isNotificationPermissionGranted = true),
+        NotificationListContent(
+            state = NotificationListUiState(notifications = previewNotifications, isNotificationPermissionGranted = true),
             onBackClick = {},
-            onAlarmClick = {},
+            onNotificationClick = {},
             onEnableNotificationClick = {},
         )
     }
@@ -131,12 +130,12 @@ private fun PreviewAlarmListWithItems() {
     widthDp = 360
 )
 @Composable
-private fun PreviewAlarmListEmpty() {
+private fun PreviewNotificationListEmpty() {
     NeveraTheme {
-        AlarmListContent(
-            state = AlarmListUiState(alarms = emptyList(), isNotificationPermissionGranted = true),
+        NotificationListContent(
+            state = NotificationListUiState(notifications = emptyList(), isNotificationPermissionGranted = true),
             onBackClick = {},
-            onAlarmClick = {},
+            onNotificationClick = {},
             onEnableNotificationClick = {},
         )
     }
@@ -148,12 +147,12 @@ private fun PreviewAlarmListEmpty() {
     widthDp = 360
 )
 @Composable
-private fun PreviewAlarmListEmptyPermissionOff() {
+private fun PreviewNotificationListEmptyPermissionOff() {
     NeveraTheme {
-        AlarmListContent(
-            state = AlarmListUiState(alarms = emptyList(), isNotificationPermissionGranted = false),
+        NotificationListContent(
+            state = NotificationListUiState(notifications = emptyList(), isNotificationPermissionGranted = false),
             onBackClick = {},
-            onAlarmClick = {},
+            onNotificationClick = {},
             onEnableNotificationClick = {},
         )
     }
@@ -165,12 +164,12 @@ private fun PreviewAlarmListEmptyPermissionOff() {
     widthDp = 360
 )
 @Composable
-private fun PreviewAlarmListWithItemsPermissionOff() {
+private fun PreviewNotificationListWithItemsPermissionOff() {
     NeveraTheme {
-        AlarmListContent(
-            state = AlarmListUiState(alarms = previewAlarms, isNotificationPermissionGranted = false),
+        NotificationListContent(
+            state = NotificationListUiState(notifications = previewNotifications, isNotificationPermissionGranted = false),
             onBackClick = {},
-            onAlarmClick = {},
+            onNotificationClick = {},
             onEnableNotificationClick = {},
         )
     }
@@ -182,15 +181,15 @@ private fun PreviewAlarmListWithItemsPermissionOff() {
     widthDp = 360
 )
 @Composable
-private fun PreviewAlarmListWithUnreadPermissionOff() {
+private fun PreviewNotificationListWithUnreadPermissionOff() {
     NeveraTheme {
-        AlarmListContent(
-            state = AlarmListUiState(
-                alarms = previewAlarms.map { it.copy(isRead = it.id != "1") },
+        NotificationListContent(
+            state = NotificationListUiState(
+                notifications = previewNotifications.map { it.copy(isRead = it.id != "1") },
                 isNotificationPermissionGranted = false,
             ),
             onBackClick = {},
-            onAlarmClick = {},
+            onNotificationClick = {},
             onEnableNotificationClick = {},
         )
     }

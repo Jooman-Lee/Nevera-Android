@@ -1,4 +1,4 @@
-package com.anddd.nevera.feature.alarmlist.alarmlist.component
+package com.anddd.nevera.feature.notificationlist.notificationlist.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,7 +18,7 @@ import com.anddd.nevera.core.designsystem.icon.NeveraIcons
 import com.anddd.nevera.core.designsystem.ui.theme.NeveraTheme
 
 @Composable
-internal fun AlarmEmptyContent(
+internal fun NotificationEmptyContent(
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -48,8 +48,8 @@ internal fun AlarmEmptyContent(
     widthDp = 360
 )
 @Composable
-private fun AlarmEmptyContentPreview() {
+private fun NotificationEmptyContentPreview() {
     NeveraTheme {
-        AlarmEmptyContent()
+        NotificationEmptyContent()
     }
 }

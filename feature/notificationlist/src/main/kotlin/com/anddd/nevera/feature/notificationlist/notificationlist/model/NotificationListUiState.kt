@@ -1,14 +1,14 @@
-package com.anddd.nevera.feature.alarmlist.alarmlist.model
+package com.anddd.nevera.feature.notificationlist.notificationlist.model
 
 import com.anddd.nevera.core.mvi.NeveraState
 
-data class AlarmListUiState(
+data class NotificationListUiState(
     val isLoading: Boolean = false,
     val isNotificationPermissionGranted: Boolean = true,
-    val alarms: List<AlarmItem> = emptyList(),
+    val notifications: List<NotificationItem> = emptyList(),
 ) : NeveraState
 
-data class AlarmItem(
+data class NotificationItem(
     val id: String,
     val title: String,
     val body: String,

@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.anddd.nevera.feature.alarmlist"
+    namespace = "com.anddd.nevera.feature.notificationlist"
 }
 
 dependencies {
