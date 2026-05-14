@@ -21,7 +21,7 @@ fun NotificationListScreen(
     val state = viewModel.collectAsState().value
 
     LaunchedEffect(Unit) {
-        viewModel.onIntent(NotificationListIntent.LoadNotifications)
+        viewModel.handleIntent(NotificationListIntent.LoadNotifications)
     }
 
     viewModel.collectSideEffect { effect ->
@@ -39,8 +39,8 @@ fun NotificationListScreen(
 
     NotificationListContent(
         state = state,
-        onBackClick = { viewModel.onIntent(NotificationListIntent.ClickBack) },
-        onNotificationClick = { id -> viewModel.onIntent(NotificationListIntent.ClickNotificationItem(id)) },
-        onEnableNotificationClick = { viewModel.onIntent(NotificationListIntent.ClickEnableNotification) },
+        onBackClick = { viewModel.handleIntent(NotificationListIntent.ClickBack) },
+        onNotificationClick = { id -> viewModel.handleIntent(NotificationListIntent.ClickNotificationItem(id)) },
+        onEnableNotificationClick = { viewModel.handleIntent(NotificationListIntent.ClickEnableNotification) },
     )
 }

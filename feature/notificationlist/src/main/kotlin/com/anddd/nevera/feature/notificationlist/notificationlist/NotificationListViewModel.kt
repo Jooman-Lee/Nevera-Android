@@ -17,7 +17,7 @@ class NotificationListViewModel @Inject constructor(
     NotificationListUiState()
 ) {
 
-    override fun onIntent(intent: NotificationListIntent) {
+    override fun handleIntent(intent: NotificationListIntent) {
         when (intent) {
             NotificationListIntent.LoadNotifications -> loadNotifications()
 
@@ -29,7 +29,7 @@ class NotificationListViewModel @Inject constructor(
         }
     }
 
-    override suspend fun Syntax<NotificationListUiState, NotificationListSideEffect>.onReduce(
+    override suspend fun Syntax<NotificationListUiState, NotificationListSideEffect>.applyMutation(
         mutation: NotificationListMutation
     ) {
         when (mutation) {
@@ -54,9 +54,9 @@ class NotificationListViewModel @Inject constructor(
     }
 
     private fun loadNotifications() = intent {
-        onReduce(NotificationListMutation.ShowLoading)
+        applyMutation(NotificationListMutation.ShowLoading)
         // TODO: replace with actual UseCase injection
-        onReduce(
+        applyMutation(
             NotificationListMutation.UpdateNotifications(
                 notifications = mockNotifications(),
                 isPermissionGranted = true,
@@ -65,7 +65,7 @@ class NotificationListViewModel @Inject constructor(
     }
 
     private fun markNotificationRead(notificationId: String) = intent {
-        onReduce(NotificationListMutation.MarkNotificationRead(notificationId))
+        applyMutation(NotificationListMutation.MarkNotificationRead(notificationId))
     }
 
     private fun navigateBack() = intent {
